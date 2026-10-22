@@ -27,7 +27,6 @@ class MineSweeper {
             numberOfMines: Number(numberOfMines),
         });
         console.log(args);
-        console.log(`${gridWidth} ${gridHeight} ${numberOfMines}`);
     }
 }
 exports.MineSweeper = MineSweeper;

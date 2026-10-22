@@ -33,4 +33,49 @@ describe("InputFieldsValidator", () => {
       ).not.toThrow();
     });
   });
+
+  describe("unsuccessful scenarios", () => {
+    describe.each([
+      {
+        field: "gridHeight",
+        error: "Grid height value should be a positive numeric whole number!",
+      },
+      {
+        field: "gridWidth",
+        error: "Grid width value should be a positive numeric whole number!",
+      },
+      {
+        field: "numberOfMines",
+        error: "Number of mines value should be a positive numeric whole number!",
+      },
+    ])("$field", ({ field, error }) => {
+      it.each([
+        "abc",
+        "NaN",
+        "",
+        " ",
+        "0",
+        "-1",
+        "1.5",
+        "Infinity",
+        "-Infinity",
+      ])("should reject %p", (value) => {
+        expect(() =>
+          InputFieldsValidator.validateGridInputFields({
+            ...validInput,
+            [field]: value,
+          }),
+        ).toThrow(error);
+      });
+    });
+
+    it("should reject more mines than grid cells", () => {
+      expect(() =>
+        InputFieldsValidator.validateGridInputFields({
+          ...validInput,
+          numberOfMines: "13",
+        }),
+      ).toThrow("Number of mines should be lower or equal than the grid length!");
+    });
+  });
 });

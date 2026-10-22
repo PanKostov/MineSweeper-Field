@@ -9,11 +9,12 @@ class MinesInserter {
             grid[firstPosition][secondPosition] = "@";
             minesGridPositions.push({ firstPosition, secondPosition });
         }
-        console.log("grid after mines ", grid);
         return minesGridPositions;
     }
     getGridPositionFromMinePosition({ gridWidth, minePosition, }) {
+        //For example secondPosition = 14 % 5 = 4 => [][4]
         const secondPosition = minePosition % gridWidth;
+        //For example firstPosition = (14 - 4) / 5 = 10 / 5 = 2 => 14 position is equal to [2][4]
         const firstPosition = (minePosition - secondPosition) / gridWidth;
         return { firstPosition, secondPosition };
     }

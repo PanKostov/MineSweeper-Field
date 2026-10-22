@@ -12,7 +12,6 @@ class MinesRandomPositionGenerator {
                 });
                 if (!minesPositions.has(minePosition)) {
                     minesPositions.add(minePosition);
-                    console.log("Mine will be in position ", minePosition);
                     break;
                 }
             }

@@ -13,27 +13,22 @@ class MineSweeperFieldCreator {
     }
     createInitialField({ gridHeight, gridWidth, numberOfMines, }) {
         this.grid = Array.from({ length: gridHeight }, () => Array(gridWidth).fill(" "));
-        console.log("Initial empty grid: ", this.grid);
         const minesPositions = this.minesRandomPositionGenerator.generateRandomMinesPositions({
             gridHeight,
             gridWidth,
             numberOfMines,
         });
-        console.log("All mines positions: ", minesPositions);
         const minesGridPositions = this.minesInserter.insertMinesPositions({
             grid: this.grid,
             gridWidth,
             minesPositions,
         });
-        console.log("grid after mines 2", this.grid);
         this.neighboringMinesCountInserter.insertNumberOfNeighboringMines({
             grid: this.grid,
             minesGridPositions,
             gridHeight,
             gridWidth,
         });
-        console.log("Final field. ", this.grid);
-        console.log("Final ");
         this.logGrid(gridHeight, gridWidth);
     }
     logGrid(gridHeight, gridWidth) {
