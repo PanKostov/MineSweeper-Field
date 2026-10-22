@@ -1,0 +1,13 @@
+# Dependencies and generated files
+node_modules/
+coverage/
+*.tsbuildinfo
+
+# Local environment variables
+.env
+.env.*
+!.env.example
+
+# Logs and system files
+*.log
+.DS_Store
